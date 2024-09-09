@@ -13,16 +13,23 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../libraries/minilibx-linux/mlx.h"
 # include "../libraries/libft/libft.h"
 # include "../libraries/libft/get_next_line/get_next_line.h"
 # include "../libraries/libft/ft_printf/ft_printf.h"
-# include <X11/keysym.h>
-# include <X11/X.h>
 # include <stdbool.h>
 
 //--------------------MAP----------------------//
-
-//------------------HANDLE--------------------//
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	char	**map;
+}	t_map;
+void	is_rectangular(t_map *map);
+void	validate_format(char *file);
+void	validate_walls(t_map *map);
+void	validate_elements(t_map *map);
+void	read_map(t_map *map, char *file);
+void	parsing(t_map *map, char *file);
 
 #endif
