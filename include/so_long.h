@@ -30,6 +30,6 @@ void	validate_format(char *file);
 void	validate_walls(t_map *map);
 void	validate_elements(t_map *map);
 void	read_map(t_map *map, char *file);
-void	parsing(t_map *map, char *file);
+void	parsing(t_map *map, char *file);w
 
 #endif
