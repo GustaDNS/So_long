@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 15:21:35 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/12 14:42:23 by gudaniel         ###   ########.fr       */
+/*   Created: 2024/09/12 11:35:58 by gudaniel          #+#    #+#             */
+/*   Updated: 2024/09/12 12:32:11 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	main(int argc, char **argv)
+
+void	init_game(t_map *map)
+{
+	map->map = NULL;
+	map->width = 0;
+	map->height = 0;
+}
+
+t_map	*init(void)
 {
 	t_map	*map;
 
-	if (argc == 2)
-	{
-		map = init();
-		read_map(map, argv[1]);
-		is_rectangular(map);
-		parsing(map, argv[1]);
-	}
-	return (0);
+	map = malloc((1) * sizeof(t_map));
+	init_game(map);
+	return (map);
 }

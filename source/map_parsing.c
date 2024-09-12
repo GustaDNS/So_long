@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/12 10:46:04 by gudaniel          #+#    #+#             */
+/*   Updated: 2024/09/12 16:06:46 by gudaniel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void	parsing(t_map *map, char *file)
 {
-	map->width = 0;
-	map->height = 0;
 	validate_format(file);
 	read_map(map, file);
-	validate_elements(map);
+	validate_elements(map, 0, 0);
 	validate_walls(map);
 	is_rectangular(map);
 }
@@ -23,8 +33,52 @@ void	floodfill(t_map *map, int x, int y)
 		return ;
 	}
 	map->map[y][x] = 'C';
-	flodfill(map, x + 1, y);
-	flodfill(map, x - 1, y);
-	flodfill(map, x, y + 1);
-	flodfill(map, x, y - 1);
+	floodfill(map, x + 1, y);
+	floodfill(map, x - 1, y);
+	floodfill(map, x, y + 1);
+	floodfill(map, x, y - 1);
 }
+
+int	set_height(char *file, int fd)
+{
+	char	*line;
+	int		i;
+	
+	line = NULL;
+	if (!line)
+		perror("Nothing to read");
+	line = get_next_line(fd);
+	i++;
+	while (line)
+	{
+		line = get_next_line(fd);
+		i++;
+	}
+	free(line);
+	return (i - 1);
+}
+
+int set_map(const char *file, t_map *map)
+{
+    int fd;
+    int row;
+	int height;
+	int i; 
+	
+	i = 0;
+	row = 0;
+	height = set_height();
+    map->map = (char **)malloc(sizeof(char *) * (map->height + 1));
+    if (!map->map)
+        return (-1);
+    fd = open(file, O_RDONLY);
+    if (fd < 0)
+        perror("Error opening map file");
+    while (++i < map->height)
+    {
+		
+    }
+    close(fd);
+    return (0);
+}
+
