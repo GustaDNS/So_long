@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 10:45:49 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/12 16:03:23 by gudaniel         ###   ########.fr       */
+/*   Created: 2024/09/17 11:27:24 by gudaniel          #+#    #+#             */
+/*   Updated: 2024/09/23 15:59:32 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	validate_elements(t_map *map, int i, int j)
 	collectible = 0;
 	while (i < map->height)
 	{
-		j = 0;
 		while (j < map->width)
 		{
 			if (map->map[i][j] == 'P')
@@ -34,6 +33,7 @@ void	validate_elements(t_map *map, int i, int j)
 				collectible++;
 			j++;
 		}
+		j = 0;
 		i++;
 	}
 	if (player != 1 || exit != 1 || collectible == 0)
@@ -45,20 +45,26 @@ void	validate_walls(t_map *map)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < map->height)
+	i = 1;
+	j = 0;
+	while (map->map[0][j] != '\n')
 	{
-		j = 0;
-		while (j < map->width)
-		{
-			if (i == 0 || i == map->height - 1 || j == 0 || j == map->width - 1)
-			{
-				if (map->map[i][j] != '1')
-					perror("Invalid map");
-			}
-			j++;
-		}
+		if (map->map[0][j] != '1')
+			perror("Invalid map");
+		j++;
+	}
+	j = 0;
+	while (map->map[i])
+	{
+		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
+			perror("Invalid map");
 		i++;
+	}
+	while (map->map[i - 1][j])
+	{
+		if (map->map[map->height - 1][j] != '1')
+			perror("Invalid map");
+		j++;
 	}
 }
 
@@ -67,20 +73,34 @@ void	validate_format(char *file)
 	int	i;
 
 	i = ft_strlen(file);
-	if (file[0] == '/' || file[i - 4] != '.' || file[i - 3] != 'b' || file[i - 2] != 'e' || file[i - 1] != 'r')
+	if (file[0] == '/' || file[i - 4] != '.'
+		|| file[i - 3] != 'b' || file[i - 2] != 'e' || file[i - 1] != 'r')
 		perror("Invalid file format");
 }
 
-void	is_rectangular(t_map *map)
+void	make_struct(char *file, t_map *map)
 {
-	int	i;
+	int	fd;
 
-	i = 0;
+	fd = open(file, O_RDONLY);
+	map->height = set_height(fd);
+	set_map(map, file);
+	set_width(map);
+}
+
+void	validate_chr(t_map *map, int i, int j)
+{
 	while (i < map->height)
 	{
-		if (ft_strlen(map->map[i]) != (size_t)map->width)
-			perror("Invalid map");
+		while (j < map->width)
+		{
+			if (map->map[i][j] != '1' && map->map[i][j] != '0'
+				&& map->map[i][j] != 'P' && map->map[i][j]
+				!= 'E' && map->map[i][j] != 'C')
+				perror("Invalid map");
+			j++;
+		}
+		j = 0;
 		i++;
 	}
 }
-

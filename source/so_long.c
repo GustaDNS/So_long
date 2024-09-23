@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:21:35 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/12 14:42:23 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:01:05 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		map = init();
-		read_map(map, argv[1]);
-		is_rectangular(map);
+		make_struct(argv[1], map);
 		parsing(map, argv[1]);
 	}
 	return (0);
 }
+
+//TODO: remove "perror" and replace for exit

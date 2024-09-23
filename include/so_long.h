@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:42:47 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/12 14:52:29 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:02:16 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ typedef struct s_map
 	char	**map;
 }	t_map;
 
-void	is_rectangular(t_map *map);
 void	validate_format(char *file);
 void	validate_walls(t_map *map);
 void	validate_elements(t_map *map, int i, int j);
-void	read_map(t_map *map, char *file);
 void	parsing(t_map *map, char *file);
-
 //-------------------GAME--------------------//
 
 t_map	*init(void);
 void	init_game(t_map *map);
 void	floodfill(t_map *map, int x, int y);
-void	set_height(char *file, int fd);
-
+int		set_height(int fd);
+void	set_map(t_map *map, char *file);
+void	make_struct(char *file, t_map *map);
+void	set_width(t_map *map);
+void	validate_chr(t_map *map, int i, int j);
 
 #endif

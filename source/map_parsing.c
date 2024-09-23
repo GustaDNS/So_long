@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 10:46:04 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/12 16:06:46 by gudaniel         ###   ########.fr       */
+/*   Created: 2024/09/17 11:26:28 by gudaniel          #+#    #+#             */
+/*   Updated: 2024/09/23 15:56:49 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 void	parsing(t_map *map, char *file)
 {
 	validate_format(file);
-	read_map(map, file);
 	validate_elements(map, 0, 0);
 	validate_walls(map);
-	is_rectangular(map);
+	validate_chr(map, 0, 0);
 }
 
 void	floodfill(t_map *map, int x, int y)
@@ -39,15 +38,15 @@ void	floodfill(t_map *map, int x, int y)
 	floodfill(map, x, y - 1);
 }
 
-int	set_height(char *file, int fd)
+int	set_height(int fd)
 {
 	char	*line;
 	int		i;
-	
-	line = NULL;
+
+	i = 0;
+	line = get_next_line(fd);
 	if (!line)
 		perror("Nothing to read");
-	line = get_next_line(fd);
 	i++;
 	while (line)
 	{
@@ -58,27 +57,38 @@ int	set_height(char *file, int fd)
 	return (i - 1);
 }
 
-int set_map(const char *file, t_map *map)
+void	set_map(t_map *map, char *file)
 {
-    int fd;
-    int row;
-	int height;
-	int i; 
-	
-	i = 0;
+	char	*row;
+	int		i;
+	int		fd;
+
+	fd = open(file, O_RDONLY);
+	i = -1;
 	row = 0;
-	height = set_height();
-    map->map = (char **)malloc(sizeof(char *) * (map->height + 1));
-    if (!map->map)
-        return (-1);
-    fd = open(file, O_RDONLY);
-    if (fd < 0)
-        perror("Error opening map file");
-    while (++i < map->height)
-    {
-		
-    }
-    close(fd);
-    return (0);
+	map->map = (char **)malloc(sizeof(char *) * (map->height + 1));
+	while (++i < map->height)
+		map->map[i] = get_next_line(fd);
+	row = get_next_line(fd);
+	free(row);
+	map->map[i] = NULL;
 }
 
+void	set_width(t_map *map)
+{
+	int	i;
+	int	j;
+	int	temp;
+
+	i = 0;
+	j = 0;
+	map->width = ft_strclen(map->map[j], '\n');
+	j++;
+	while (j < map->height)
+	{
+		temp = ft_strclen(map->map[j], '\n');
+		if (temp != map->width)
+			perror("Invalid map");
+		j++;
+	}
+}
