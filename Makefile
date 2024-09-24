@@ -6,7 +6,7 @@
 #    By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 10:23:59 by gudaniel          #+#    #+#              #
-#    Updated: 2024/09/12 14:30:58 by gudaniel         ###   ########.fr        #
+#    Updated: 2024/09/24 10:08:04 by gudaniel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME		= so_long
 INC			= -I./includes -I./libraries/libft
 RM			= rm -rf
 
-GENERAL		= so_long init
+GENERAL		= so_long init util
 MAP			= map_parsing map_validation
 
 #==============================================================================#

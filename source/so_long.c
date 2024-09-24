@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:21:35 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/23 16:01:05 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:34:21 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		map = init();
+		if (!map)
+			killua(map);
 		make_struct(argv[1], map);
 		parsing(map, argv[1]);
+		killua(map);
 	}
 	return (0);
 }

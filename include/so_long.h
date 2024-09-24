@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:42:47 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/23 16:02:16 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/09/24 10:07:26 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	set_map(t_map *map, char *file);
 void	make_struct(char *file, t_map *map);
 void	set_width(t_map *map);
 void	validate_chr(t_map *map, int i, int j);
+void	killua(t_map *map);
 
 #endif

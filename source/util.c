@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:30:24 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/23 16:01:25 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:45:05 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	killua(t_map *map)
 	}
 	free(map->map);
 	free(map);
+	exit(1);
 }

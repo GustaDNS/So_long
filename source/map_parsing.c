@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:26:28 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/09/23 15:56:49 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:42:35 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	parsing(t_map *map, char *file)
 {
 	validate_format(file);
-	validate_elements(map, 0, 0);
+	validate_elements(map, -1, -1);
 	validate_walls(map);
 	validate_chr(map, 0, 0);
 }
@@ -45,15 +45,13 @@ int	set_height(int fd)
 
 	i = 0;
 	line = get_next_line(fd);
-	if (!line)
-		perror("Nothing to read");
 	i++;
 	while (line)
 	{
+		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
-	free(line);
 	return (i - 1);
 }
 
@@ -67,6 +65,8 @@ void	set_map(t_map *map, char *file)
 	i = -1;
 	row = 0;
 	map->map = (char **)malloc(sizeof(char *) * (map->height + 1));
+	if (!map)
+		killua(map);
 	while (++i < map->height)
 		map->map[i] = get_next_line(fd);
 	row = get_next_line(fd);
@@ -88,7 +88,7 @@ void	set_width(t_map *map)
 	{
 		temp = ft_strclen(map->map[j], '\n');
 		if (temp != map->width)
-			perror("Invalid map");
+			killua(map);
 		j++;
 	}
 }
