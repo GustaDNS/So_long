@@ -6,7 +6,7 @@
 #    By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 10:23:59 by gudaniel          #+#    #+#              #
-#    Updated: 2024/09/24 10:08:04 by gudaniel         ###   ########.fr        #
+#    Updated: 2024/09/24 12:08:28 by gudaniel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,16 @@ MAP			= map_parsing map_validation
 #==============================================================================#
 #                                    PATHS                                     #
 #==============================================================================#
-VPATH 		= ./source/
-				
+VPATH 		= ./source \
+			  ./source/map \
+			  
+MAPS_PATH	= ./source/map			
 LIBS_PATH	= ./libraries
 LIBFT_PATH	= $(LIBS_PATH)/libft
 LIBFT 		= $(LIBFT_PATH)/libft.a
 
 SRC			= $(addsuffix .c, $(GENERAL))\
-			 $(addsuffix .c, $(MAP))\
+			  $(addsuffix .c, $(MAP))\
 
 OBJ_DIR		= obj
 OBJS		= $(SRC:%.c=$(OBJ_DIR)/%.o)
