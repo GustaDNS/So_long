@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:27:24 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/10/15 16:26:27 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:18:14 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	validate_elements(t_game *game, int i, int j, int player)
 	}
 	if (player != 1 || exit != 1 || collectible == 0)
 	{
-		killua(game, 1);
 		ft_printf("Error! Invalid elements\n");
+		killua(game, 1);
 	}
 	game->collectible = collectible;
 }

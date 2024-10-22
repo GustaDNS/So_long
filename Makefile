@@ -6,7 +6,7 @@
 #    By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 10:23:59 by gudaniel          #+#    #+#              #
-#    Updated: 2024/10/14 14:36:17 by gudaniel         ###   ########.fr        #
+#    Updated: 2024/10/22 13:49:29 by gudaniel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,3 +40,8 @@ fclean: clean
 	rm -Rf so_long
 
 re: fclean all
+
+download:
+	@wget https://cdn.intra.42.fr/document/document/27195/minilibx-linux.tgz
+	@tar -xzf minilibx-linux.tgz
+	@rm minilibx-linux.tgz
