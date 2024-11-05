@@ -6,7 +6,7 @@
 /*   By: gudaniel <gudaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:21:35 by gudaniel          #+#    #+#             */
-/*   Updated: 2024/10/15 16:35:45 by gudaniel         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:30:39 by gudaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ void	validate_image(void)
 {
 	int	fd;
 
-	fd = open("/home/gudaniel/so_long/textures/kunai.xpm", O_RDONLY);
+	fd = open("./textures/kunai.xpm", O_RDONLY);
 	if (fd < 0)
 		exit(ft_printf("Error! Image doesn't exist\n"));
-	fd = open("/home/gudaniel/so_long/textures/exit.xpm", O_RDONLY);
+	fd = open("./textures/exit.xpm", O_RDONLY);
 	if (fd < 0)
 		exit(ft_printf("Error! Image doesn't exist\n"));
-	fd = open("/home/gudaniel/so_long/textures/green.xpm", O_RDONLY);
+	fd = open("./textures/green.xpm", O_RDONLY);
 	if (fd < 0)
 		exit(ft_printf("Error! Image doesn't exist\n"));
-	fd = open("/home/gudaniel/so_long/textures/minato.xpm", O_RDONLY);
+	fd = open("./textures/minato.xpm", O_RDONLY);
 	if (fd < 0)
 		exit(ft_printf("Error! Image doesn't exist\n"));
-	fd = open("/home/gudaniel/so_long/textures/tree_y_max.xpm", O_RDONLY);
+	fd = open("./textures/tree_y_max.xpm", O_RDONLY);
 	if (fd < 0)
 		exit(ft_printf("Error! Can't read\n"));
 }
